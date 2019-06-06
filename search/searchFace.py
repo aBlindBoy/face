@@ -2,11 +2,13 @@ import MySQLdb
 import numpy as np
 import face_recognition
 from flask import Flask, jsonify, request, redirect, json
+from flask import Flask
+from flask_cors import CORS
 
 # 打开数据库连接
 from entity.Image import Image
 
-db = MySQLdb.connect("192.168.0.146", "root", "root", "face1", charset='utf8')
+db = MySQLdb.connect("192.168.0.146", "root", "root", "face", charset='utf8')
 # 使用cursor()方法获取操作游标
 cursor = db.cursor()
 
@@ -14,6 +16,7 @@ cursor = db.cursor()
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
+CORS(app)
 
 
 def allowed_file(filename):
@@ -23,10 +26,14 @@ def allowed_file(filename):
 
 @app.route('/search', methods=['GET', 'POST'])
 def upload_image():
+    print("进来了-----------")
     # 检测图片是否上传成功
     if request.method == 'POST':
+        print("进来了---")
         # 判断是否是文件
+        print(request.files)
         if 'file' not in request.files:
+            print("进来")
             return redirect(request.url)
 
         file = request.files['file']
@@ -63,8 +70,8 @@ def detect_faces_in_image(file_stream):
         cursor.execute(sql)
         results = cursor.fetchall()
         # 遍历数据库人脸数据
-        for re in results:
-            for index in range(len(face_encodings)):
+        for index in range(len(face_encodings)):
+            for re in results:
                 # 将数组转成 list
                 mysql_face = list(eval(re[2]))
                 # fa = np.array(mysql_face, dtype=float)
@@ -72,7 +79,7 @@ def detect_faces_in_image(file_stream):
                 # upface = list(eval(face_encodings[0]))
                 # print("上传人脸类型", type(face_encodings[index]), "=====>>>>", face_encodings[index])
                 # 进行逐个比对 1.已知人脸 2.未知人脸
-                match_results = face_recognition.compare_faces([mysql_face], face_encodings[index])
+                match_results = face_recognition.compare_faces([mysql_face], face_encodings[index], 0.5)
                 if match_results[0]:
                     # print(re[1], "===>>>比对成功")
                     li.append(re[1])
