@@ -1,8 +1,9 @@
-import face_recognition
-from flask import Flask, jsonify, request, redirect
-from werkzeug.utils import secure_filename
 import os
+
 import MySQLdb
+import face_recognition
+from flask import Flask, jsonify, request
+from werkzeug.utils import secure_filename
 
 # 打开数据库连接
 db = MySQLdb.connect("192.168.0.146", "root", "root", "face", charset='utf8')
@@ -23,17 +24,25 @@ def allowed_file(filename):
 @app.route('/upload', methods=['POST'])
 def upload_image():
     if request.method == 'POST':
-        f = request.files['file']
+        f = request.files.getlist('file')
         print(type(f))
-        basepath = os.path.dirname(__file__)  # 当前文件所在路径
-        upload_path = os.path.join(basepath, 'F:\\upload\\image', secure_filename(f.filename))
-        f.save(upload_path)
+        count = 0
+        for fname in f:
+            print(type(fname))
+            basename = os.path.dirname(__file__)  # 当前文件所在路径
+            upload_path = os.path.join(basename, 'F:\\upload\\image', secure_filename(fname.filename))
+            fname.save(upload_path)
+            if fname and allowed_file(fname.filename):
+                # 图片上传成功，检测图片中的人脸
+                count = detect_faces_in_image(fname)+count
+                print(count)
 
-    if f and allowed_file(f.filename):
-        # 图片上传成功，检测图片中的人脸
-        return detect_faces_in_image(f)
-
-    return ''
+        result = {
+            "code": "200",
+            "msg": "upload success",
+            "A total of face ": "%s" % count
+        }
+        return jsonify(result)
 
 
 def detect_faces_in_image(file_stream):
@@ -59,22 +68,18 @@ def detect_faces_in_image(file_stream):
             # str1 = ''.join(face_encoding)
             s = ','.join('%s' % id for id in face_encoding)
             print(type(s), '===', s)
-            list1.append((image_id, '[%s]' %s))
+            list1.append((image_id, '[%s]' % s))
         print("参数 = ", str(list1))
         print("总共有", len(face_encodings), "张人脸")
         cursor.executemany('INSERT INTO face (image_id, face_encoding) values (%s,%s)', list1)
         db.commit()
         print('添加成功')
     except IOError:
-         db.rollback()
-         print('添加失败')
+        db.rollback()
+        print('添加失败')
     # finally:
     #     db.close()
-    result = {
-        "code": "200",
-        "msg": "上传成功"
-    }
-    return jsonify(result)
+    return len(face_encodings)
 
 
 if __name__ == "__main__":

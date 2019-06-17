@@ -1,12 +1,12 @@
 import MySQLdb
-import numpy as np
 import face_recognition
-from flask import Flask, jsonify, request, redirect, json
+from flask import jsonify, request, redirect
 from flask import Flask
 from flask_cors import CORS
 
 # 打开数据库连接
 from entity.Image import Image
+from entity.face import Face
 
 db = MySQLdb.connect("192.168.0.146", "root", "root", "face", charset='utf8')
 # 使用cursor()方法获取操作游标
@@ -29,11 +29,12 @@ def upload_image():
     print("进来了-----------")
     # 检测图片是否上传成功
     if request.method == 'POST':
-        print("进来了---")
+        # 获取相似度参数
+        s = request.args['str']
+        print(type(s), (100 - int(s)) / 100)
+        s = (100 - int(s)) / 100
         # 判断是否是文件
-        print(request.files)
         if 'file' not in request.files:
-            print("进来")
             return redirect(request.url)
 
         file = request.files['file']
@@ -44,13 +45,14 @@ def upload_image():
 
         if file and allowed_file(file.filename):
             # 图片上传成功，检测图片中的人脸
-            return detect_faces_in_image(file)
+            return detect_faces_in_image(file, s)
 
     # 图片上传失败，输出以下html代码
     return ''
 
 
-def detect_faces_in_image(file_stream):
+
+def detect_faces_in_image(file_stream, s):
     # 载入用户上传的图片
     img = face_recognition.load_image_file(file_stream)
     # 为用户上传的图片进行编码
@@ -79,26 +81,38 @@ def detect_faces_in_image(file_stream):
                 # upface = list(eval(face_encodings[0]))
                 # print("上传人脸类型", type(face_encodings[index]), "=====>>>>", face_encodings[index])
                 # 进行逐个比对 1.已知人脸 2.未知人脸
-                match_results = face_recognition.compare_faces([mysql_face], face_encodings[index], 0.5)
+                match_results = face_recognition.compare_faces([mysql_face], face_encodings[index], s)
                 if match_results[0]:
-                    # print(re[1], "===>>>比对成功")
-                    li.append(re[1])
-        print(li)
-        li = list(set(li))
-        print(li)
-        for i in li:
-            print(type(i))
-            imagePathSql = "select i.image_id,i.image_path from image i where i.image_id = %s" % i
+                    # 图片人脸 多对多 判断是否存在相同人脸
+                    li1 = face_recognition.face_distance([mysql_face], face_encodings[index])
+                    le = (1 - li1[0]) * 100
+                    print(re[1], "===>>>比对成功; 相似度 = ", '%d%%' % le)
+                    face = Face(re[1], '%d%%' % le)
+                    li.append(face)
+
+        print(type(li))
+        # 去除相同的人脸 不改变集合顺序
+        faceList = sorted(set(li), key=li.index)
+
+        for face in faceList:
+            # 根据人脸id 查询出图片
+            imagePathSql = "select i.image_id,i.image_path from image i where i.image_id = %s" % face.face_id
             cursor.execute(imagePathSql)
             fanhui = cursor.fetchall()
             for fa in fanhui:
-                image = Image(fa[0], fa[1])
+                image = Image(fa[0], fa[1], face.face_similarity)
                 # image = json.dumps(image.__dict__)
                 imagePath.append(image.convert_to_dict)
     except IOError:
         print("不知道什么鬼?????  报错了")
-    print(imagePath)
-    return jsonify(imagePath)
+    print(imagePath, type(imagePath))
+    # qw = sorted(set(imagePath), key=f.get('image_id'))
+    # 如果存在多张人脸 根据image_id去除相同图片
+    l2 = []
+    for i in imagePath:
+        if not i in l2:
+            l2.append(i)
+    return jsonify(l2)
 
 
 if __name__ == "__main__":
