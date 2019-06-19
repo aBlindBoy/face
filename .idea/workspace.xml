@@ -4,15 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/search/searchFace.py" line="81" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3a64897-7e97-42af-a22d-e197363eac26" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity/Image.py" beforeDir="false" afterPath="$PROJECT_DIR$/entity/Image.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myface/uploadFace.py" beforeDir="false" afterPath="$PROJECT_DIR$/myface/uploadFace.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search/searchFace.py" beforeDir="false" afterPath="$PROJECT_DIR$/search/searchFace.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/upload.html" afterDir="false" />
-    </list>
+    <list default="true" id="d3a64897-7e97-42af-a22d-e197363eac26" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,41 +45,7 @@
     <favorites_list name="face" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/search/searchFace.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="59" column="18" lean-forward="true" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://D:/用户目录/下载/image_research.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-896">
-              <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/xiangsidu.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2912">
-              <caret line="106" column="3" selection-start-line="106" selection-start-column="3" selection-end-line="109" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -344,13 +302,13 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Flask server.face" />
-      <item itemvalue="Flask server.Flask (myface/uploadFace.py)" />
-      <item itemvalue="Flask server.Flask (search/searchFace.py)" />
-      <item itemvalue="Flask server.Flask (search/searchFace.py) (1)" />
       <item itemvalue="JavaScript Debug.index.html" />
-      <item itemvalue="Python.xiangsidu" />
       <item itemvalue="Python.Employee" />
+      <item itemvalue="Python.xiangsidu" />
+      <item itemvalue="Flask server.Flask (myface/uploadFace.py)" />
+      <item itemvalue="Flask server.Flask (search/searchFace.py) (1)" />
+      <item itemvalue="Flask server.Flask (search/searchFace.py)" />
+      <item itemvalue="Flask server.face" />
     </list>
     <recent_temporary>
       <list>
@@ -381,7 +339,7 @@
       <workItem from="1560248231968" duration="25451000" />
       <workItem from="1560423379828" duration="19124000" />
       <workItem from="1560733220373" duration="3813000" />
-      <workItem from="1560752571820" duration="287000" />
+      <workItem from="1560752571820" duration="512000" />
     </task>
     <task id="LOCAL-00001" summary="提交信息">
       <created>1559787047942</created>
@@ -390,11 +348,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559787047942</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="2019/6/27">
+      <created>1560752882602</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1560752882602</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94016000" />
+    <option name="totallyTimeSpent" value="94241000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -406,14 +371,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.29752067" visible="true" weight="0.21162046" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.29752067" visible="true" weight="0.21162046" />
       <window_info id="Structure" order="1" sideWeight="0.70247936" side_tool="true" weight="0.20469083" />
       <window_info id="Favorites" order="2" sideWeight="0.5013774" side_tool="true" weight="0.20469083" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7153518" visible="true" weight="0.36836404" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7153518" weight="0.248104" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6380597" weight="0.40628386" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -427,7 +392,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="SciView" order="3" visible="true" weight="0.17750533" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.17750533" />
       <window_info anchor="right" id="R Graphics" order="4" weight="0.32995737" />
       <window_info anchor="right" id="R Packages" order="5" weight="0.32995737" />
       <window_info anchor="right" id="Database" order="6" weight="0.18763326" />
@@ -439,7 +404,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="提交信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="提交信息" />
+    <MESSAGE value="2019/6/27" />
+    <option name="LAST_COMMIT_MESSAGE" value="2019/6/27" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -700,8 +666,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/search/searchFace.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="59" column="18" lean-forward="true" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
+        <state relative-caret-position="924">
+          <caret line="33" column="44" lean-forward="true" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
